@@ -3,8 +3,8 @@
 <head>
   
   <meta charset="utf-8">
-  <title>Cooper Wallace&#39;s DevLog</title>
-  <meta name="description" content="Cooper Wallace&#39;s DevLog">
+  <title>Summer Research Assistant Week 1</title>
+  <meta name="description" content="Summer Research Assistant Week 1">
   <meta name="author" content="Cooper Wallace">
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -337,8 +337,6 @@ body {
 
   
   
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Cooper Wallace&#39;s DevLog Feed" />
-  
 
   <meta name="generator" content="Hugo 0.25.1" />
 
@@ -382,39 +380,56 @@ body {
 
 <div class="pure-g">
   <div class="pure-u-1-24 pure-u-md-1-6"></div>
-	<div class="pure-u-11-12 pure-u-md-2-3">
-	<div class="post-content">
-	
-	  <p class="posts-name">Recent posts:</p>
+  <div class="pure-u-11-12 pure-u-md-2-3">
+    <div class="post">
 
-	  <ul class="posts">
-		
-		
-		
-		<li>
-		  
-		  <a class="post-list" href="/posts/11-05-2018/">Summer Research Assistant Week 1</a>
+      <div class="post-title">
+        <p class="footnote">
+        <time class="">05-15-2018</time>
+        
+        
+        
 
-		  <p class="footnote">
-			<time datetime="05-15-2018T00:00:00Z">05-15-2018</time>
+        
 
-			
+        
+        </p>
+        <h1>Summer Research Assistant Week 1</h1>
+      </div>
 
-			
+      <div class="post-content">
+        
 
-			
+<p>This Summer I was given the chance to join the Computer Science department at Grant MacEwan as a STEP (Summer Temporary Employment Position) Research Assistant. I&rsquo;m rather excited to be working along side my Professors over the summer, and I can&rsquo;t wait to see the things that I&rsquo;ll be working on over the next 4 months! During my first meeting with the departments chair, Cam Macdonell, I had expressed interest in starting a Blog. I&rsquo;ve had the idea for awhile, but thought that I didn&rsquo;t have enough to write about. Considering that I&rsquo;ll be learning a bunch of new things over the summer, Cam suggested that I write about my experiences as a research assistant. I couldn&rsquo;t have agreed anymore with the suggestion and I&rsquo;m excited to be able to finally start a blog!
+So I&rsquo;ll be posting every week about what I&rsquo;ve been working on, what I&rsquo;ve learnt, and share some insight about my experiences. Lets jump in, shall we?</p>
 
-			
+<h2 id="the-first-week">The First Week</h2>
 
-		  </p>
-		</li>
-		
-		
-		
-		
-	  </ul>
-	</div>
-	</div>
+<p>During the first meeting, Cam and I started to discuss the things and areas that I&rsquo;m interested in as a way to determine what my first task should be. Being able to influence the first things that I&rsquo;ll be working on was great, and after discussing we settled upon the idea that I&rsquo;ll be working on writing a RESTful API based upon a project that I had from a course on Web Development. The best thing about the project was that it was to be written in Go which I&rsquo;ve really enjoyed working with in the past. I actually learnt about the language last year at a workshop hosted at the school with help from the local <a href="https://edmontongo.org/">Edmonton Go</a> group. However I admit I haven&rsquo;t used the language much in the past year, so it was exciting to be able to dive back into it.</p>
+
+<h4 id="restfulness">RESTfulness</h4>
+
+<p>It didn&rsquo;t take long to get back into the swing of things using Go, and I had started to think that writing an API with Go would be rather easy. After all one can easily create a web server in two lines thanks to the great built in package <code>net/http</code>. The basic idea of the API was that it was to function as a survey system that teachers could use to ask students questions. The functionality was basic enough; a Teacher creates a course and adds a question with its responses to it, then a Student joins the course and responds to the survey questions. This seemed straight forward, and the functionality didn&rsquo;t appear too complicated. However the thing that I hadn&rsquo;t considered enough when planning out the API was how a user will be interacting with it.</p>
+
+<p>My initial thoughts was that a route would follow a scheme such as <code>/courses/course_name/questions/question_id/...</code>, however as you can see this quickly becomes very long and ugly. It doesn&rsquo;t provide a decent layout for the user to interact with, and its hard to understand without documentation at your side. This is where REST comes to the rescue, it helps avoid this problem by defining principles that when adhered to provides a coherent API structure. Once I started to understand the principles of REST and stop unknowingly working against it, things started to come together neatly. For example the above route was split up and simplified to <code>/courses/course_name</code> and <code>/questions/question_id</code>. This made the routes much easier to work with, and allowed me to add new routes without having to add to an existing long route. I&rsquo;m glad that this issue had happened because it made me run through what I was doing and actually plan out the API properly. Something that I plan to get better at.. eventually..</p>
+
+<h4 id="cookies">Cookies</h4>
+
+<p>One of the reasons that my initial modeling of the API suffered so many revisions was because I didn&rsquo;t realize how to provide the user with their &lsquo;token&rsquo; without manually sending it with every request. That meant using the <code>POST</code> method with restricted routes to be able send the token to the server in order to request information, essentially losing majority of the HTTP methods that were available. After scratching my head for awhile I went to talk with the Professor who wrote the project, and everything just clicked when he said it. Use Cookies. I had totally forgotten that Cookies existed! After a few quick alterations, I had the ability to <em>transparently</em> send information about the user to and from the server. I no longer had to manually attach the token that I received which more importantly meant that I could use all of the available methods that HTTP had to offer.</p>
+
+<p>The most important part was less about using cookies with the web server, and more about the opportunity of being a research assistant. Switching from only a <code>POST</code> request to using cookies was rather trivial, but taking the time to ask about this simple problem was a important lesson learnt. Struggling with a problem for awhile is always a good thing, the eureka moment of solving it yourself is always worth that time. However sometimes you get stuck on a problem that you just can&rsquo;t seem to wrap your head around. Being able to ask a person to explain the problem rather than struggling with it for hours on end is invaluable. Being able to work with knowledgable professors is fantastic, and I&rsquo;m always able to correct my shortcomings when I talk to them about the problem I&rsquo;m having. However they aren&rsquo;t able to help unless I ask them about the problem that I&rsquo;m struggling with. This was by far the most important lesson that I learnt in my first week, and I&rsquo;m glad that I realized this sooner than later!</p>
+
+<h4 id="databases">Databases</h4>
+
+<p>The next thing that I needed for the web server was a Database to keep track of all the information. I&rsquo;ve neglected them for a long time because I haven&rsquo;t been required to write anything more complicated than a select query. I didn&rsquo;t realize how important they were until I had to write the database for the API myself. At its core the database is supposed to store information, but I didn&rsquo;t realize the flexibility you&rsquo;re granted when storing that information. The API for example had to store information about a course, question, and the responses to that question. I spent some time writing my first iteration which utilized references to link all of these entries together which had bigger implications than I first thought. Such as when trying to add a question to a course, I didn&rsquo;t have to worry about adding a question to a course that didn&rsquo;t existent. The references would cause the database to return an error when adding such a question indicating that the course itself didn&rsquo;t exist. I wouldn&rsquo;t have to verify each individual piece of information if I planned out the database to handle that for me.</p>
+
+<p>When writing the database myself, I was able to appreciate the things that it handled behind the scenes. The referencing was not only able to prevent loose data from being entered into the system, but also avoid adding duplicate data. I didn&rsquo;t have to reference a response to the course because the question it belonged to already had a reference to that course. If the response was linked to the question, then I already had a reference to the course through the question itself. Using this to my advantage I went through a couple more iterations and was able to prevent storing duplicate data that wasn&rsquo;t really needed.</p>
+
+<p>Again the practice of sitting down and planning out exactly what the database was supposed to do was helpful. References aren&rsquo;t useful on their own, but become useful when you consider how the pieces of the database related to each other. I learnt just how helpful and important databases actually are. It was no longer just a tool that was used to store information, but it was a tool to <strong>reliably</strong> store information.</p>
+
+      </div>
+    </div>
+  </div>
   <div class="pure-u-1-24 pure-u-md-1-6"></div>
 </div>
 
@@ -446,7 +461,7 @@ body {
 
         </ul>
         <a href="#" class="pure-menu-link pull-right" id="gototop-btn">↑↑</a>
-        <a href="/index.xml" class="pure-menu-link pull-right">RSS</a>
+        <a href="" class="pure-menu-link pull-right">RSS</a>
       </div>
       
       <p id="foot-copyright">(c) Cooper Wallace 2018</p>

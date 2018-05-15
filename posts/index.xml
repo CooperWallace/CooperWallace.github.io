@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cooper Wallace&#39;s DevLog</title>
-    <link>/</link>
-    <description>Recent content on Cooper Wallace&#39;s DevLog</description>
+    <title>Posts on Cooper Wallace&#39;s DevLog</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on Cooper Wallace&#39;s DevLog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>cooper.wallace5@gmail.com (Cooper Wallace)</managingEditor>
@@ -11,7 +11,7 @@
     <copyright>(c) Cooper Wallace 2018</copyright>
     <lastBuildDate>Tue, 15 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,16 +21,6 @@
       <author>cooper.wallace5@gmail.com (Cooper Wallace)</author>
       <guid>/posts/11-05-2018/</guid>
       <description>This Summer I was given the chance to join the Computer Science department at Grant MacEwan as a STEP (Summer Temporary Employment Position) Research Assistant. I&amp;rsquo;m rather excited to be working along side my Professors over the summer, and I can&amp;rsquo;t wait to see the things that I&amp;rsquo;ll be working on over the next 4 months! During my first meeting with the departments chair, Cam Macdonell, I had expressed interest in starting a Blog.</description>
-    </item>
-    
-    <item>
-      <title>A Little About Me</title>
-      <link>/about/</link>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
-      <author>cooper.wallace5@gmail.com (Cooper Wallace)</author>
-      <guid>/about/</guid>
-      <description>Hey There, I&amp;rsquo;m Cooper!
-I&amp;rsquo;m currently studying for a B.Sc in Computer Science at MacEwan University. I have a strong passion for many areas in Computer Science, and I&amp;rsquo;m always trying to learn something new. This is a blog where I plan to share my experiences about what I&amp;rsquo;ve been working on, and things that other people may find useful. I hope that you enjoy the blog.</description>
     </item>
     
   </channel>
