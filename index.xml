@@ -9,10 +9,20 @@
     <managingEditor>cooper.wallace5@gmail.com (Cooper Wallace)</managingEditor>
     <webMaster>cooper.wallace5@gmail.com (Cooper Wallace)</webMaster>
     <copyright>(c) Cooper Wallace 2018</copyright>
-    <lastBuildDate>Tue, 15 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 May 2018 16:38:49 -0600</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Research Assistant Weeks 2-4</title>
+      <link>/posts/20-05-2018/</link>
+      <pubDate>Sun, 20 May 2018 16:38:49 -0600</pubDate>
+      <author>cooper.wallace5@gmail.com (Cooper Wallace)</author>
+      <guid>/posts/20-05-2018/</guid>
+      <description>The past few weeks have been busier than I originally had expected them to be, and my original plan of writing a blog post once per week has changed a bit as you can see. Although that won&amp;rsquo;t deter me from writing them, so here is my experiences of my second to fourth week working as a Research assistant!
+During the second week of work, I had a chance to finish up the API that I had written about in my first blog post.</description>
+    </item>
     
     <item>
       <title>Summer Research Assistant Week 1</title>

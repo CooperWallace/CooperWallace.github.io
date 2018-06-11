@@ -3,8 +3,8 @@
 <head>
   
   <meta charset="utf-8">
-  <title>Posts</title>
-  <meta name="description" content="Posts">
+  <title>Research Assistant Weeks 2-4</title>
+  <meta name="description" content="Research Assistant Weeks 2-4">
   <meta name="author" content="Cooper Wallace">
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -337,8 +337,6 @@ body {
 
   
   
-  <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Cooper Wallace&#39;s DevLog Feed" />
-  
 
   <meta name="generator" content="Hugo 0.25.1" />
 
@@ -380,43 +378,67 @@ body {
 </div>
 
 
-
 <div class="pure-g">
   <div class="pure-u-1-24 pure-u-md-1-6"></div>
   <div class="pure-u-11-12 pure-u-md-2-3">
-    <div class="post-content">
-      <p class="posts-name">Posts:</p>
+    <div class="post">
 
-      <ul class="posts">
+      <div class="post-title">
+        <p class="footnote">
+        <time class="">05-20-2018</time>
         
         
         
-        <li>
-          
-          <a class="post-list" href="/posts/20-05-2018/">Research Assistant Weeks 2-4</a>
 
-          <p class="footnote">
-          <time datetime="05-20-2018">
-            05-20-2018
-          </time>
-          </p>
-        </li>
         
-        
-        
-        <li>
-          
-          <a class="post-list" href="/posts/11-05-2018/">Summer Research Assistant Week 1</a>
 
-          <p class="footnote">
-          <time datetime="05-15-2018">
-            05-15-2018
-          </time>
-          </p>
-        </li>
         
+        </p>
+        <h1>Research Assistant Weeks 2-4</h1>
+      </div>
+
+      <div class="post-content">
         
-      </ul>
+
+<p>The past few weeks have been busier than I originally had expected them to be, and my original plan of writing a blog post once per week has changed a bit as you can see. Although that won&rsquo;t deter me from writing them, so here is my experiences of my second to fourth week working as a Research assistant!</p>
+
+<p>During the second week of work, I had a chance to finish up the API that I had written about in my first blog post. Its a rather rough version of an API, but there were so many things that I learned while working on it. I hadn&rsquo;t considered the inner workings of a web server before I had started the project, and I learned about some techniques for handling some of those inner workings. Before beginning working on the next project, I was given the chance to learn a little bit about front end development. The progression from back end to front end made a lot of sense, and I was given the chance to learn how the two interact with each other. I&rsquo;ve been focused on learning the back-end portion over the years and never gave front-end much of a chance. I found it rather interesting to learn about, and it was satisfying to be able to fill some gaps in my knowledge.</p>
+
+<p>After this I had spent the next two weeks working with a Professor on a new system used by the school called eSubmit. eSubmit is an automated marking system for coding assignments, where the assignment will be evaluated and compared against what is expected. Working on eSubmit was a great experience, it exposed me to a large code base and required that I spent the time to understand what was happening in it. Something that I haven&rsquo;t been exposed to yet, so it was definitely a big help!</p>
+
+<h1 id="middleware">Middleware</h1>
+
+<p>In my first post, I had mentioned that I learnt about using cookies to authenticate users. Changing the authentication method to rely on cookies was only a few lines of code, but something that I hadn&rsquo;t considered was how the implementation that I used would affect me further down the road. When there were only a few routes that required authentication, it made sense to have a few lines in each individual route to do it. However, this becomes infeasible as the number of functions that require authentication increases, and one change to the authentication method would create a very big issue. One way to solve this issue would be to create an authentication function to call at the beginning of the route function. While this is an acceptable approach, it still requires that I insert some code at the beginning of the route function. After talking with a friend who did the project aswell, he had asked me if I had used middleware to handle the authentication. I was intrigued as I hadn&rsquo;t even heard of it before. After a bit of reading about middleware, I was able to refactor and remove a bunch of duplicate lines in the project.</p>
+
+<p>So what exactly is middleware? It is essentially a wrapper function that can be executed before or after the route fuction has been called. The key difference between a piece of middleware and a function call is that the middleware can be viewed as being transparent. Rather than inserting a function call in the main function, a piece of middleware utilizes a callback method to execute if it has successfully completed. The function that is attached to a particlar URL won&rsquo;t be aware that the middleware actually exists, which gives the advantage of being able to modify middleware without affecting the function. Another advantage is that middleware can be added or removed from a route function at will, and won&rsquo;t affect it&rsquo;s execution (Assuming that there is no context added, more on that later). While there are many uses for middleware, Imainly used it as a way to check a users information when a request to a restricted route was made.</p>
+
+<p>The middleware would retreive a cookie from the request header with the users token, and lookup the user&rsquo;s information to see if they have access to the given resource. If the user has access the next function would be called, but if they were rejected we are able to stop the next call from occuring. Since we are calling the authentication middleware before anything else, we can actually short circuit the execution by returning early. This can be useful with authentication because if a user isn&rsquo;t allowed to access a route, they should be defered before they even reach it. Since we are only checking authentication an unauthorized requestor will not be able to determine whether or not the route they have requested actually exists, which is an advantage when you want prevent unauthorized gathering of information.</p>
+
+<p>After using middleware and wrapper functions, I&rsquo;ll certainly try to use them more when I get the chance to. As I continued to work with the <code>http</code> package on the API, I learned a lot about intermediate techniques that have been created to make things easier. Theres so much more to explore when it comes to working with the <code>http</code> package in Go, but it was satisfying to learn about using middleware. I&rsquo;ve just learnt about the <code>context</code> package which, from what I understand, allows middleware to attach extra information before it reaches the route function that will handle the request. This would be particularily useful, as it could reduce the number of times specific information would have to be requested from the Database. I&rsquo;ll certainly try to come back to the API in my spare time, as I&rsquo;ve learnt a number of things after working on it. It was a bunch of fun to work on, and I&rsquo;m glad I was able to work with Go again!</p>
+
+<h1 id="esubmit">eSubmit</h1>
+
+<p>After I had finished up working on the API, I began working with a professor on eSubmit. Its an automated evaluation and marking system for programming assignments. Students would submit their code to eSubmit, it will be evaluated and compared to see if it matches the expected output of the assignment. It vaguely reminds me of how <a href="https://www.codingame.com/home">CodingGame</a> works, but instead of imaginary points you receive your actual grade. One of the reasons why I like this system and CodingGame is because Students are able to receive immediate feedback on their solutions. Which is useful if a Student has overlooked some formatting issue, or what the instructor was expecting from them. I don&rsquo;t believe that this system should be used as a substitution for assignment specifications, but I do see it being a handy addition. It can point out those minor issues that can be forgotten during late and caffeine fueled programming sessions. I have yet to use the system as a Student, but I&rsquo;m looking forward to the quality of life improvements that it offers.</p>
+
+<p>Its rather satisfying to be working on a piece of software that I&rsquo;ll be using in the future as a student. It gives me a chance to improve the experience that other students and I will have when using it.</p>
+
+<p>Before diving into the codebase for the project, I was asked to prepare a template LaTeX document for both the instructor and student manual. To go along with the document, I was asked to write a script in NodeJS utilizing the puppeteer library to document and screenshot eSubmit. Considering that the system may change in the future, the current screenshots may become outdated and misleading. Taking new screenshots by hand everytime something is modified would be impractical and a pain. Thats where the power of automation comes in handy. Normally writing a template isn&rsquo;t this fun.</p>
+
+<p>Puppeteer uses a headless chrome instance to execute the predefined script that you provide it with. It takes advantage of the DOM object selectors, and provides a way to mimic the tasks of regular web browsing. After you specify the object that you want to interact with, Puppeteer adds the ability to interact with the webpage by clicking, typing, hover, etc. When used in tandem with the ability to take screenshots of the webpage, Puppeteer becomes a highly useful tool that can be used to automate repeatitive website interactions.</p>
+
+<p>Rather than using Puppeteer for unit testing, we used it to produce sample images for the user manual to demonstrate how the website can be expected to look. Getting started with Puppeteer was easy. After reading a quick blog post (which you can find <a href="https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e">here</a>), I quickly had the first iteration of the script up and running. What surprised me the most with Puppeteer was how painless it was to use, and that the documentation was clear enough to not warrant second sources. Puppeteer provides developers with a bunch of powerful features that can make their lifes easier. I highly recommend it if you have yet to automate your website testing methods.</p>
+
+<h1 id="learning-a-new-code-base">Learning a new Code base</h1>
+
+<p>The last I want to touch on is my experience with being new to a project, and learn a new code base. I was assigned a few tasks to accomplish on the eSubmit website, and that involved working with the Go code base. This was an entirely new challenge and experience for me. I haven&rsquo;t joined a project with an existing code base the size of eSubmit&rsquo;s, so I had to put some time into learning how things work within it.</p>
+
+<p>It was really helpful to be able to ask the creator of the project questions about how it worked. When I first started to look at the code base, I was pointed in the relative direction of where I&rsquo;d have to add things. I dove head first into the code base, and started to try to understand how things were working under the hood. However after a few hours I was met with a bit of frusturation, because I hadn&rsquo;t produced any results for the tasks that I was assigned.</p>
+
+<p>I&rsquo;ve worked on a few small projects before, but the code base of eSubmit was much larger than anything I&rsquo;ve worked on before. I thought that I could follow the same workflow of the smaller projects, but this was not the case. I had to spent significantly more time trying to understand how things were working before attempting to add any changes to the system. I hadn&rsquo;t initially noticed how some of the more complicated things had worked, and this conjured up a bit of frusturation.</p>
+
+<p>Thankfully this frusturation was quenched after I had spoken to the professor about it. I was told that taking time to understand such a large code base was completely normal, and that I wasn&rsquo;t doing anything out of the normal. After hearing this I was put at ease, and after asking a few more questions the frusturation subsided. I reminded myself that being a Research Assistant means that I&rsquo;ve been given the chance to learn new things, and that I&rsquo;m not expected to know everything right off the bat. With this in mind I took a break and got back to work. However this time I took the time to understand what was happening more in depth, and began to feel like I&rsquo;m growing as a developer.</p>
+
+      </div>
     </div>
   </div>
   <div class="pure-u-1-24 pure-u-md-1-6"></div>
@@ -450,7 +472,7 @@ body {
 
         </ul>
         <a href="#" class="pure-menu-link pull-right" id="gototop-btn">↑↑</a>
-        <a href="/posts/index.xml" class="pure-menu-link pull-right">RSS</a>
+        <a href="" class="pure-menu-link pull-right">RSS</a>
       </div>
       
       <p id="foot-copyright">(c) Cooper Wallace 2018</p>
